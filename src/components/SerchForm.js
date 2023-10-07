@@ -1,15 +1,28 @@
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 const SearchForm = () => {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+
   const onSearchPressed = () => {
     console.log("searching for: ");
   };
   return (
     <View style={styles.card}>
       <Text style={styles.title}>Search the best prices for your trip</Text>
-      <TextInput style={styles.input} placeholder="From" />
-      <TextInput style={styles.input} placeholder="To" />
+      <TextInput
+        style={styles.input}
+        placeholder="From"
+        value={from}
+        onChangeText={setFrom}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="To"
+        value={to}
+        onChangeText={setTo}
+      />
 
       <Button title="Search" onPress={onSearchPressed} />
     </View>
