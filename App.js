@@ -2,20 +2,30 @@ import { StatusBar } from "expo-status-bar";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import SearchForm from "./src/components/SerchForm";
 import { LinearGradient } from "expo-linear-gradient";
-import data from "./data.json";
+import dummydata from "./data.json";
 import FlightOptionItem from "./src/components/FlightOptionItem";
+import { useState } from "react";
 
-const option1 = data[3];
+
 
 export default function App() {
+  const [items,setItems] = useState([])
+
+
+  const onSearch = (data) =>{
+console.log(data)
+
+setItems(dummydata)
+  }
+
   return (
     <LinearGradient colors={["white", "#E0EFFF"]} style={styles.container}>
       <SafeAreaView>
-        <SearchForm />
+        <SearchForm  onSearch={onSearch}/>
         {/*  <FlightOptionItem flight={option1}/> */}
         <FlatList
           renderItem={({ item }) => <FlightOptionItem flight={item} />}
-          data={data}
+          data={items}
           showsVerticalScrollIndicator={false}
         />
       </SafeAreaView>
